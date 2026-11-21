@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMA Harapan Bangsa — Website Resmi Sekolah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">HB</span>
+        <span>SMA Harapan Bangsa</span>
+      </a>
+      <nav aria-label="Navigasi Utama">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#pengumuman">Berita</a></li>
+          <li><a href="#guru">Guru & Staf</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#ppdb-kontak">PPDB & Kontak</a></li>
+          <li><a href="admin.html" class="nav-cta">Panel Admin</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka Menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="beranda" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-tag">Terakreditasi A • Unggul dalam Karakter & Sains</span>
+          <h1>Mencetak Generasi Cerdas, Berintegritas, dan Siap Masa Depan</h1>
+          <p class="hero-desc">
+            Lingkungan belajar modern yang memadukan penguatan karakter, riset & teknologi, serta pendampingan akademik untuk mengantarkan siswa meraih cita-cita.
+          </p>
+          <div class="hero-actions">
+            <a href="#ppdb-kontak" class="btn btn-primary">Daftar PPDB 2027/2028</a>
+            <a href="#pengumuman" class="btn btn-outline">Info Terbaru</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80"
+            alt="Suasana kegiatan siswa SMA Harapan Bangsa"
+          />
+          <div class="hero-card-caption">
+            <strong>Tahun Ajaran 2026/2027</strong>
+            <span>Pendaftaran Gelombang 1 PPDB 2027/2028 segera dibuka</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistik -->
+    <section class="stats-strip">
+      <div class="container stats-grid">
+        <div class="stat-box">
+          <strong>960+</strong>
+          <span>Peserta Didik Aktif</span>
+        </div>
+        <div class="stat-box">
+          <strong>78</strong>
+          <span>Guru & Tenaga Kependidikan</span>
+        </div>
+        <div class="stat-box">
+          <strong>34+</strong>
+          <span>Ekstrakurikuler & Klub Riset</span>
+        </div>
+        <div class="stat-box">
+          <strong>92%</strong>
+          <span>Lulusan Melanjutkan ke PTN/Pilihan</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Unggulan -->
+    <section id="program" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Keunggulan Akademik</span>
+            <h2>Program & Fasilitas Sekolah</h2>
+            <p class="section-subtitle">Dirancang untuk mendukung eksplorasi akademik, kreativitas digital, dan kepemimpinan.</p>
+          </div>
+        </div>
+        <div class="program-grid">
+          <article class="card">
+            <span class="icon-badge">01</span>
+            <h3>Kurikulum Adaptif & Riset</h3>
+            <p>Pembelajaran berbasis proyek, eksperimen laboratorium sains, dan bimbingan karya tulis ilmiah.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge">02</span>
+            <h3>Laboratorium & Literasi Digital</h3>
+            <p>Akses laboratorium komputer, perpustakaan modern, dan pembelajaran digital interaktif.</p>
+          </article>
+          <article class="card">
+            <span class="icon-badge">03</span>
+            <h3>Pembinaan Karakter & Prestasi</h3>
+            <p>Penguatan soft skills, organisasi siswa, olahraga, seni, dan pembinaan olimpiade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Berita & Pengumuman -->
+    <section id="pengumuman" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Informasi Terkini</span>
+            <h2>Berita & Pengumuman Sekolah</h2>
+            <p class="section-subtitle">Kelola atau tambahkan pengumuman terbaru melalui Panel Admin.</p>
+          </div>
+          <div class="filter-controls">
+            <input type="search" id="cariBerita" class="input-search" placeholder="Cari berita..." aria-label="Cari berita" />
+            <div class="filter-pills" id="filterKategoriBerita">
+              <button type="button" class="pill active" data-kategori="Semua">Semua</button>
+              <button type="button" class="pill" data-kategori="PPDB">PPDB</button>
+              <button type="button" class="pill" data-kategori="Akademik">Akademik</button>
+              <button type="button" class="pill" data-kategori="Kesiswaan">Kesiswaan</button>
+              <button type="button" class="pill" data-kategori="Umum">Umum</button>
+            </div>
+          </div>
+        </div>
+        <div id="daftarBeritaPublik" class="news-grid"></div>
+      </div>
+    </section>
+
+    <!-- Identitas Guru & Staf -->
+    <section id="guru" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Tim Pendidik</span>
+            <h2>Identitas Guru & Staf</h2>
+            <p class="section-subtitle">Guru dan tenaga kependidikan berdedikasi di SMA Harapan Bangsa.</p>
+          </div>
+        </div>
+        <div id="daftarGuruPublik" class="staff-grid"></div>
+      </div>
+    </section>
+
+    <!-- Galeri Foto Sekolah -->
+    <section id="galeri" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Dokumentasi</span>
+            <h2>Galeri Foto Sekolah</h2>
+            <p class="section-subtitle">Klik foto untuk melihat tampilan penuh. Tambah & edit langsung di Panel Admin.</p>
+          </div>
+        </div>
+        <div id="daftarGaleriPublik" class="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- PPDB & Kontak -->
+    <section id="ppdb-kontak" class="section">
+      <div class="container contact-grid">
+        <div class="card">
+          <span class="eyebrow">Pendaftaran & Informasi</span>
+          <h2>Hubungi Kami & Info PPDB</h2>
+          <p class="section-subtitle">Kirimkan pertanyaan seputar pendaftaran siswa baru atau kunjungan sekolah.</p>
+          <ul class="contact-list">
+            <li><strong>Alamat:</strong> Jl. Pendidikan No. 45, Harapan Bangsa</li>
+            <li><strong>Email:</strong> info@smaharapanbangsa.sch.id</li>
+            <li><strong>Telepon:</strong> (021) 555-0192</li>
+            <li><strong>Jam Layanan:</strong> Senin – Jumat, 07.30 – 15.00 WIB</li>
+          </ul>
+        </div>
+        <form id="formKontak" class="card form-card">
+          <h3>Kirim Pesan Cepat</h3>
+          <div class="form-group">
+            <label for="namaPengirim">Nama Lengkap *</label>
+            <input type="text" id="namaPengirim" required placeholder="Nama Anda" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="emailPengirim">Email *</label>
+              <input type="email" id="emailPengirim" required placeholder="nama@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="topikPesan">Topik</label>
+              <select id="topikPesan">
+                <option value="Informasi PPDB">Informasi PPDB</option>
+                <option value="Akademik & Kurikulum">Akademik & Kurikulum</option>
+                <option value="Kunjungan Sekolah">Kunjungan Sekolah</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pesanPengirim">Pesan *</label>
+            <textarea id="pesanPengirim" rows="3" required placeholder="Tuliskan pertanyaan Anda..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+          <p id="statusKontak" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Lightbox Galeri -->
+  <div id="lightboxModal" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Pratinjau Foto Galeri">
+    <div class="lightbox-box">
+      <button type="button" id="tutupLightbox" class="lightbox-close" aria-label="Tutup">✕</button>
+      <img id="lightboxImg" src="" alt="" />
+      <div class="lightbox-caption">
+        <span id="lightboxBadge" class="badge"></span>
+        <h3 id="lightboxJudul"></h3>
+        <p id="lightboxDeskripsi" class="small-note"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© <span id="tahun"></span> SMA Harapan Bangsa. Semua hak cipta dilindungi.</p>
+      <a href="admin.html">Kelola Konten (Admin)</a>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

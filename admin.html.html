@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin — SMA Harapan Bangsa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">HB</span>
+        <span>SMA Harapan Bangsa</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Lihat Website Publik</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">Manajemen Konten</span>
+          <h2>Panel Admin Sekolah</h2>
+          <p class="section-subtitle">Kelola Berita, Identitas Guru & Staf (beserta foto), serta Galeri Foto Sekolah.</p>
+        </div>
+        <div class="admin-toolbar">
+          <button type="button" id="btnExportJson" class="btn-small">Unduh Cadangan JSON</button>
+          <button type="button" id="btnKunciAdmin" class="btn-small">Kunci Sesi</button>
+        </div>
+      </div>
+
+      <!-- Login -->
+      <section id="panelLoginAdmin" class="card admin-login-card">
+        <h3>Akses Panel Pengelola</h3>
+        <p class="small-note">Kode akses default: <code>SEKOLAH2026</code> (dapat diubah pada <code>KODE_AKSES_ADMIN</code> di <code>assets/js/admin.js</code>).</p>
+        <form id="formLoginAdmin" class="admin-login-row">
+          <input type="password" id="inputKodeAdmin" placeholder="Masukkan kode akses" required />
+          <button type="submit" class="btn btn-primary">Masuk</button>
+        </form>
+        <p id="statusLoginAdmin" class="form-status" aria-live="polite"></p>
+      </section>
+
+      <!-- Workspace -->
+      <div id="workspaceAdmin" hidden>
+        <div class="admin-tabs" role="tablist">
+          <button type="button" class="admin-tab-btn active" data-tab="tabBerita">Berita & Pengumuman</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabGuru">Identitas Guru & Staf</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabGaleri">Galeri Foto Sekolah</button>
+        </div>
+
+        <!-- TAB BERITA -->
+        <section id="tabBerita" class="admin-tab-panel active">
+          <div class="admin-layout">
+            <form id="formBeritaAdmin" class="card form-card">
+              <div class="admin-card-head">
+                <h3 id="judulFormBerita">Tambah Berita Baru</h3>
+                <button type="button" id="btnResetBerita" class="btn-small">Reset Bawaan</button>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="judulBerita">Judul *</label>
+                  <input type="text" id="judulBerita" required placeholder="Judul berita atau pengumuman" />
+                </div>
+                <div class="form-group">
+                  <label for="kategoriBerita">Kategori *</label>
+                  <select id="kategoriBerita">
+                    <option value="PPDB">PPDB</option>
+                    <option value="Akademik">Akademik</option>
+                    <option value="Kesiswaan">Kesiswaan</option>
+                    <option value="Umum">Umum</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tanggalBerita">Tanggal *</label>
+                  <input type="text" id="tanggalBerita" required />
+                </div>
+                <div class="form-group">
+                  <label for="slugBerita">Slug URL (opsional)</label>
+                  <input type="text" id="slugBerita" placeholder="otomatis-dari-judul" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ringkasanBerita">Ringkasan *</label>
+                <textarea id="ringkasanBerita" rows="2" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="isiBerita">Isi Lengkap (pisahkan paragraf dengan baris kosong) *</label>
+                <textarea id="isiBerita" rows="5" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="poinBerita">Poin Penting (1 baris per poin)</label>
+                <textarea id="poinBerita" rows="3"></textarea>
+              </div>
+              <div class="admin-form-actions">
+                <button type="submit" id="btnSimpanBerita" class="btn btn-primary">Simpan Berita</button>
+                <button type="button" id="btnBatalEditBerita" class="btn-small" hidden>Batal Edit</button>
+              </div>
+              <p id="statusBeritaAdmin" class="form-status"></p>
+            </form>
+
+            <aside class="card">
+              <h3>Daftar Berita (<span id="jumlahBerita">0</span>)</h3>
+              <div id="daftarBeritaAdmin" class="admin-list"></div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- TAB GURU & STAF -->
+        <section id="tabGuru" class="admin-tab-panel" hidden>
+          <div class="admin-layout">
+            <form id="formGuruAdmin" class="card form-card">
+              <div class="admin-card-head">
+                <h3 id="judulFormGuru">Tambah Guru / Staf</h3>
+                <button type="button" id="btnResetGuru" class="btn-small">Reset Bawaan</button>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="namaGuru">Nama Lengkap & Gelar *</label>
+                  <input type="text" id="namaGuru" required placeholder="Contoh: Drs. Ahmad Fauzi, M.Pd." />
+                </div>
+                <div class="form-group">
+                  <label for="jabatanGuru">Jabatan / Peran *</label>
+                  <input type="text" id="jabatanGuru" required placeholder="Contoh: Guru Matematika / Staf TU" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bidangGuru">Mata Pelajaran / Unit</label>
+                  <input type="text" id="bidangGuru" placeholder="Contoh: Matematika Wajib" />
+                </div>
+                <div class="form-group">
+                  <label for="nipGuru">NIP / NIY</label>
+                  <input type="text" id="nipGuru" placeholder="Opsional" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fileFotoGuru">Unggah Foto</label>
+                <input type="file" id="fileFotoGuru" accept="image/*" />
+              </div>
+              <div class="form-group">
+                <label for="urlFotoGuru">Atau URL Foto</label>
+                <input type="url" id="urlFotoGuru" placeholder="https://..." />
+              </div>
+              <div class="photo-preview-box">
+                <img id="previewFotoGuru" alt="Pratinjau foto guru" hidden />
+                <span id="teksPreviewGuru" class="small-note">Menggunakan avatar bawaan jika foto kosong.</span>
+              </div>
+              <div class="admin-form-actions">
+                <button type="submit" id="btnSimpanGuru" class="btn btn-primary">Simpan Guru / Staf</button>
+                <button type="button" id="btnBatalEditGuru" class="btn-small" hidden>Batal Edit</button>
+              </div>
+              <p id="statusGuruAdmin" class="form-status"></p>
+            </form>
+
+            <aside class="card">
+              <h3>Daftar Guru & Staf (<span id="jumlahGuru">0</span>)</h3>
+              <div id="daftarGuruAdmin" class="admin-list"></div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- TAB GALERI FOTO -->
+        <section id="tabGaleri" class="admin-tab-panel" hidden>
+          <div class="admin-layout">
+            <form id="formGaleriAdmin" class="card form-card">
+              <div class="admin-card-head">
+                <h3 id="judulFormGaleri">Tambah Foto Galeri</h3>
+                <button type="button" id="btnResetGaleri" class="btn-small">Reset Bawaan</button>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="judulGaleri">Judul Foto / Kegiatan *</label>
+                  <input type="text" id="judulGaleri" required placeholder="Contoh: Lomba Karya Ilmiah" />
+                </div>
+                <div class="form-group">
+                  <label for="kategoriGaleri">Kategori *</label>
+                  <select id="kategoriGaleri">
+                    <option value="Akademik">Akademik</option>
+                    <option value="Kesiswaan">Kesiswaan</option>
+                    <option value="Prestasi">Prestasi</option>
+                    <option value="Fasilitas">Fasilitas</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="tanggalGaleri">Tanggal Kegiatan</label>
+                <input type="text" id="tanggalGaleri" />
+              </div>
+              <div class="form-group">
+                <label for="deskripsiGaleri">Keterangan Singkat</label>
+                <textarea id="deskripsiGaleri" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="fileFotoGaleri">Unggah Foto</label>
+                <input type="file" id="fileFotoGaleri" accept="image/*" />
+              </div>
+              <div class="form-group">
+                <label for="urlFotoGaleri">Atau URL Foto</label>
+                <input type="url" id="urlFotoGaleri" placeholder="https://..." />
+              </div>
+              <div class="photo-preview-box">
+                <img id="previewFotoGaleri" alt="Pratinjau foto galeri" hidden />
+                <span id="teksPreviewGaleri" class="small-note">Pilih file atau masukkan URL foto.</span>
+              </div>
+              <div class="admin-form-actions">
+                <button type="submit" id="btnSimpanGaleri" class="btn btn-primary">Simpan ke Galeri</button>
+                <button type="button" id="btnBatalEditGaleri" class="btn-small" hidden>Batal Edit</button>
+              </div>
+              <p id="statusGaleriAdmin" class="form-status"></p>
+            </form>
+
+            <aside class="card">
+              <h3>Daftar Foto Galeri (<span id="jumlahGaleri">0</span>)</h3>
+              <div id="daftarGaleriAdmin" class="admin-list"></div>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© <span id="tahun"></span> SMA Harapan Bangsa.</p>
+      <a href="index.html">Beranda</a>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
