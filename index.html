@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMA Harapan Bangsa — Website Resmi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#beranda" class="logo">SMA Harapan Bangsa</a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#jurusan">Program</a></li>
+          <li><a href="#pengumuman">Berita</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#ppdb-kontak">PPDB & Kontak</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka Menu">☰</button>
+    </div>
+  </header>
+
+  <section id="beranda" class="hero">
+    <div class="container">
+      <h1>Mencetak Generasi Cerdas, Berkarakter, dan Siap Berkarya</h1>
+      <p>Selamat datang di portal informasi resmi, galeri kegiatan, dan layanan PPDB SMA Harapan Bangsa.</p>
+      <div class="hero-actions">
+        <a href="#pengumuman" class="btn">Baca Berita Terbaru</a>
+        <a href="#ppdb-kontak" class="btn btn-outline">Daftar PPDB / Kirim Pesan</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="profil" class="section">
+    <div class="container">
+      <h2>Profil Sekolah</h2>
+      <p>
+        SMA Harapan Bangsa berkomitmen menghadirkan lingkungan belajar yang aktif,
+        inklusif, dan relevan dengan perkembangan teknologi serta kebutuhan masa depan siswa.
+      </p>
+    </div>
+  </section>
+
+  <section id="jurusan" class="section section-alt">
+    <div class="container">
+      <h2>Program & Peminatan</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>MIPA</h3>
+          <p>Fokus pada sains, matematika, riset ilmiah, dan pemecahan masalah analitis.</p>
+        </article>
+        <article class="card">
+          <h3>IPS</h3>
+          <p>Mempelajari ekonomi, sosial kemasyarakatan, kebijakan publik, dan kewirausahaan.</p>
+        </article>
+        <article class="card">
+          <h3>Teknologi & Digital</h3>
+          <p>Pengenalan pemrograman, desain digital, literasi data, dan proyek kreatif siswa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pengumuman" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Berita & Pengumuman Terbaru</h2>
+        <p class="section-subtitle">Klik judul atau tombol detail untuk membaca informasi lengkap.</p>
+      </div>
+      <div id="daftarPengumuman" class="announcement-list"></div>
+    </div>
+  </section>
+
+  <section id="galeri" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Galeri Foto Sekolah</h2>
+        <div class="filter-group" role="group" aria-label="Filter Galeri">
+          <button type="button" class="filter-btn active" data-kategori="Semua">Semua</button>
+          <button type="button" class="filter-btn" data-kategori="Kegiatan">Kegiatan</button>
+          <button type="button" class="filter-btn" data-kategori="Prestasi">Prestasi</button>
+          <button type="button" class="filter-btn" data-kategori="Fasilitas">Fasilitas</button>
+        </div>
+      </div>
+      <div id="gridGaleri" class="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section id="ppdb-kontak" class="section">
+    <div class="container">
+      <h2>Form PPDB & Kontak Sekolah</h2>
+      <p class="section-subtitle">
+        Gunakan formulir di bawah untuk mendaftar PPDB awal atau mengirim pertanyaan ke pihak sekolah.
+      </p>
+
+      <div class="form-layout">
+        <form id="formPpdbKontak" class="card form-card" novalidate>
+          <div class="form-group">
+            <label for="jenisFormulir">Jenis Keperluan</label>
+            <select id="jenisFormulir" name="jenisFormulir">
+              <option value="PPDB">Pendaftaran PPDB Siswa Baru</option>
+              <option value="Kontak">Pertanyaan / Kontak Sekolah</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="namaLengkap">Nama Lengkap *</label>
+            <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Contoh: Raka Pratama" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="nama@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="telepon">No. HP / WhatsApp *</label>
+              <input type="tel" id="telepon" name="telepon" placeholder="0812xxxxxxxx" required />
+            </div>
+          </div>
+
+          <div id="fieldPpdb">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="asalSekolah">Asal Sekolah (SMP/MTs) *</label>
+                <input type="text" id="asalSekolah" name="asalSekolah" placeholder="Contoh: SMP Negeri 1 Bandung" />
+              </div>
+              <div class="form-group">
+                <label for="peminatan">Pilihan Peminatan</label>
+                <select id="peminatan" name="peminatan">
+                  <option value="MIPA">MIPA</option>
+                  <option value="IPS">IPS</option>
+                  <option value="Teknologi & Digital">Teknologi & Digital</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pesan">Catatan / Pesan</label>
+            <textarea id="pesan" name="pesan" rows="3" placeholder="Tulis pertanyaan atau catatan tambahan..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Kirim Data</button>
+          <p id="statusForm" class="form-status" aria-live="polite"></p>
+        </form>
+
+        <aside class="card submission-box">
+          <div class="submission-header">
+            <h3>Data Masuk (Browser Ini)</h3>
+            <button type="button" id="btnExportCsv" class="btn-small">Unduh CSV</button>
+          </div>
+          <p class="small-note">
+            Tersimpan lokal di perangkat Anda untuk simulasi/rekap ringan. Untuk pengiriman otomatis ke email/Google Sheets, atur <code>KONFIG_KIRIM</code> di <code>script.js</code>.
+          </p>
+          <div id="daftarKiriman" class="submission-list"></div>
+        </aside>
+      </div>
+
+      <div class="contact-strip">
+        <strong>Alamat:</strong> Jl. Pendidikan No. 45, Bandung &nbsp;|&nbsp;
+        <strong>Email:</strong> info@smaharapanbangsa.sch.id &nbsp;|&nbsp;
+        <strong>Telp:</strong> (022) 555-0192
+      </div>
+    </div>
+  </section>
+
+  <div id="modalGaleri" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" id="tutupModal" class="modal-close" aria-label="Tutup">&times;</button>
+      <div id="modalVisual" class="modal-visual"></div>
+      <div class="modal-body">
+        <span id="modalKategori" class="badge"></span>
+        <h3 id="modalJudul"></h3>
+        <p id="modalDeskripsi"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="tahun"></span> SMA Harapan Bangsa. Semua hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

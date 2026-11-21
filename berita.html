@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Berita — SMA Harapan Bangsa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">SMA Harapan Bangsa</a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#beranda">Beranda</a></li>
+          <li><a href="index.html#pengumuman">Semua Berita</a></li>
+          <li><a href="index.html#galeri">Galeri</a></li>
+          <li><a href="index.html#ppdb-kontak">PPDB & Kontak</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka Menu">☰</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container detail-container">
+      <a href="index.html#pengumuman" class="back-link">&larr; Kembali ke Daftar Berita</a>
+      <article id="detailBerita" class="card detail-card"></article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="tahun"></span> SMA Harapan Bangsa. Semua hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="berita.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Berita & Pengumuman — SMA Harapan Bangsa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">SMA Harapan Bangsa</a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#beranda">Beranda</a></li>
+          <li><a href="index.html#pengumuman">Berita Publik</a></li>
+          <li><a href="index.html#galeri">Galeri</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka Menu">☰</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2>Admin Pengelola Berita & Pengumuman</h2>
+          <p class="section-subtitle">
+            Tambah, ubah, atau hapus berita langsung dari browser. Perubahan tersimpan di perangkat ini dan muncul di halaman Berita & Detail Berita.
+          </p>
+        </div>
+        <div class="admin-toolbar">
+          <button type="button" id="btnExportBerita" class="btn-small">Salin / Unduh JSON</button>
+          <button type="button" id="btnResetBerita" class="btn-small">Reset Bawaan</button>
+          <button type="button" id="btnKunciAdmin" class="btn-small">Kunci Sesi</button>
+        </div>
+      </div>
+
+      <section id="panelLoginAdmin" class="card admin-login-card">
+        <h3>Akses Panel Pengelola</h3>
+        <p class="small-note">
+          Masukkan kode akses pengelola (default: <code>SEKOLAH2026</code>; bisa diubah di konstanta <code>KODE_AKSES_ADMIN</code> pada <code>admin.js</code>).
+        </p>
+        <form id="formLoginAdmin" class="admin-login-row">
+          <input type="password" id="inputKodeAdmin" placeholder="Masukkan kode akses" autocomplete="off" required />
+          <button type="submit" class="btn btn-primary">Masuk</button>
+        </form>
+        <p id="statusLoginAdmin" class="form-status" aria-live="polite"></p>
+      </section>
+
+      <div id="workspaceAdmin" class="admin-layout" hidden>
+        <form id="formBeritaAdmin" class="card form-card">
+          <h3 id="judulFormBerita">Tambah Berita Baru</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="judulBerita">Judul Berita / Pengumuman *</label>
+              <input type="text" id="judulBerita" placeholder="Contoh: Pengumuman Libur Awal Puasa" required />
+            </div>
+            <div class="form-group">
+              <label for="kategoriBerita">Kategori *</label>
+              <select id="kategoriBerita">
+                <option value="PPDB">PPDB</option>
+                <option value="Akademik">Akademik</option>
+                <option value="Kesiswaan">Kesiswaan</option>
+                <option value="Umum">Umum</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tanggalBerita">Tanggal Tampil *</label>
+              <input type="text" id="tanggalBerita" placeholder="Contoh: 25 November 2026" required />
+            </div>
+            <div class="form-group">
+              <label for="slugBerita">Slug URL (otomatis jika dikosongkan)</label>
+              <input type="text" id="slugBerita" placeholder="contoh-pengumuman-libur" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ringkasanBerita">Ringkasan Singkat *</label>
+            <textarea id="ringkasanBerita" rows="2" placeholder="Ringkasan 1–2 kalimat untuk kartu daftar berita..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="isiBerita">Isi Lengkap Berita (pisahkan paragraf dengan baris kosong) *</label>
+            <textarea id="isiBerita" rows="5" placeholder="Paragraf pertama...&#10;&#10;Paragraf kedua..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="poinBerita">Poin Penting (satu poin per baris, opsional)</label>
+            <textarea id="poinBerita" rows="3" placeholder="Siapkan berkas fotokopi rapor&#10;Hadir 15 menit sebelum acara"></textarea>
+          </div>
+
+          <div class="admin-form-actions">
+            <button type="submit" id="btnSimpanBerita" class="btn btn-primary">Simpan Berita</button>
+            <button type="button" id="btnBatalEdit" class="btn-small" hidden>Batal Edit</button>
+          </div>
+          <p id="statusAdmin" class="form-status" aria-live="polite"></p>
+        </form>
+
+        <aside class="card">
+          <h3>Daftar Berita Aktif (<span id="jumlahBerita">0</span>)</h3>
+          <p class="small-note">Klik Edit untuk mengubah isi, Hapus untuk menghapus dari daftar aktif.</p>
+          <div id="daftarBeritaAdmin" class="admin-list"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="tahun"></span> SMA Harapan Bangsa. Semua hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
