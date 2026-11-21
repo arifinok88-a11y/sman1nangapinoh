@@ -1,47 +1,23 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Berita & Pengumuman — SMA Harapan Bangsa</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header class="navbar">
-    <div class="container nav-content">
-      <a href="index.html" class="logo">SMA Harapan Bangsa</a>
-      <nav>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html#beranda">Beranda</a></li>
-          <li><a href="index.html#pengumuman">Berita Publik</a></li>
-          <li><a href="index.html#galeri">Galeri</a></li>
-          <li><a href="admin.html">Admin</a></li>
-        </ul>
-      </nav>
-      <button class="menu-btn" id="menuBtn" aria-label="Buka Menu">☰</button>
-    </div>
-  </header>
-
-  <main class="section">
+<main class="section">
     <div class="container">
       <div class="section-header">
         <div>
-          <h2>Admin Pengelola Berita & Pengumuman</h2>
+          <h2>Panel Admin Konten Sekolah</h2>
           <p class="section-subtitle">
-            Tambah, ubah, atau hapus berita langsung dari browser. Perubahan tersimpan di perangkat ini dan muncul di halaman Berita & Detail Berita.
+            Kelola Berita, Identitas Guru & Staf, serta Galeri Foto Sekolah langsung dari browser.
           </p>
         </div>
         <div class="admin-toolbar">
-          <button type="button" id="btnExportBerita" class="btn-small">Salin / Unduh JSON</button>
-          <button type="button" id="btnResetBerita" class="btn-small">Reset Bawaan</button>
+          <button type="button" id="btnExportSemua" class="btn-small">Unduh Cadangan JSON</button>
           <button type="button" id="btnKunciAdmin" class="btn-small">Kunci Sesi</button>
         </div>
       </div>
 
+      <!-- Panel Akses Sederhana -->
       <section id="panelLoginAdmin" class="card admin-login-card">
         <h3>Akses Panel Pengelola</h3>
         <p class="small-note">
-          Masukkan kode akses pengelola (default: <code>SEKOLAH2026</code>; bisa diubah di konstanta <code>KODE_AKSES_ADMIN</code> pada <code>admin.js</code>).
+          Masukkan kode akses pengelola (default: <code>SEKOLAH2026</code>; bisa diubah di <code>admin.js</code>).
         </p>
         <form id="formLoginAdmin" class="admin-login-row">
           <input type="password" id="inputKodeAdmin" placeholder="Masukkan kode akses" autocomplete="off" required />
@@ -50,75 +26,210 @@
         <p id="statusLoginAdmin" class="form-status" aria-live="polite"></p>
       </section>
 
-      <div id="workspaceAdmin" class="admin-layout" hidden>
-        <form id="formBeritaAdmin" class="card form-card">
-          <h3 id="judulFormBerita">Tambah Berita Baru</h3>
+      <!-- Workspace Admin -->
+      <div id="workspaceAdmin" hidden>
+        <!-- Navigasi Tab Admin -->
+        <div class="admin-tabs" role="tablist">
+          <button type="button" class="admin-tab-btn active" data-tab="tabBerita">Berita & Pengumuman</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabGuru">Identitas Guru & Staf</button>
+          <button type="button" class="admin-tab-btn" data-tab="tabGaleri">Galeri Foto Sekolah</button>
+        </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="judulBerita">Judul Berita / Pengumuman *</label>
-              <input type="text" id="judulBerita" placeholder="Contoh: Pengumuman Libur Awal Puasa" required />
-            </div>
-            <div class="form-group">
-              <label for="kategoriBerita">Kategori *</label>
-              <select id="kategoriBerita">
-                <option value="PPDB">PPDB</option>
-                <option value="Akademik">Akademik</option>
-                <option value="Kesiswaan">Kesiswaan</option>
-                <option value="Umum">Umum</option>
-              </select>
-            </div>
+        <!-- TAB 1: BERITA & PENGUMUMAN -->
+        <section id="tabBerita" class="admin-tab-panel active">
+          <div class="admin-layout">
+            <form id="formBeritaAdmin" class="card form-card">
+              <div class="admin-card-head">
+                <h3 id="judulFormBerita">Tambah Berita Baru</h3>
+                <button type="button" id="btnResetBerita" class="btn-small">Reset Bawaan</button>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="judulBerita">Judul Berita / Pengumuman *</label>
+                  <input type="text" id="judulBerita" placeholder="Contoh: Pengumuman Libur Awal Puasa" required />
+                </div>
+                <div class="form-group">
+                  <label for="kategoriBerita">Kategori *</label>
+                  <select id="kategoriBerita">
+                    <option value="PPDB">PPDB</option>
+                    <option value="Akademik">Akademik</option>
+                    <option value="Kesiswaan">Kesiswaan</option>
+                    <option value="Umum">Umum</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tanggalBerita">Tanggal Tampil *</label>
+                  <input type="text" id="tanggalBerita" placeholder="Contoh: 25 November 2026" required />
+                </div>
+                <div class="form-group">
+                  <label for="slugBerita">Slug URL (otomatis jika dikosongkan)</label>
+                  <input type="text" id="slugBerita" placeholder="contoh-pengumuman-libur" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ringkasanBerita">Ringkasan Singkat *</label>
+                <textarea id="ringkasanBerita" rows="2" placeholder="Ringkasan 1–2 kalimat untuk kartu daftar berita..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="isiBerita">Isi Lengkap Berita (pisahkan paragraf dengan baris kosong) *</label>
+                <textarea id="isiBerita" rows="5" placeholder="Paragraf pertama...
+
+Paragraf kedua..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="poinBerita">Poin Penting (satu poin per baris, opsional)</label>
+                <textarea id="poinBerita" rows="3" placeholder="Siapkan berkas fotokopi rapor
+Hadir 15 menit sebelum acara"></textarea>
+              </div>
+
+              <div class="admin-form-actions">
+                <button type="submit" id="btnSimpanBerita" class="btn btn-primary">Simpan Berita</button>
+                <button type="button" id="btnBatalEdit" class="btn-small" hidden>Batal Edit</button>
+              </div>
+              <p id="statusAdmin" class="form-status" aria-live="polite"></p>
+            </form>
+
+            <aside class="card">
+              <h3>Daftar Berita Aktif (<span id="jumlahBerita">0</span>)</h3>
+              <p class="small-note">Klik Edit untuk mengubah isi, Hapus untuk menghapus dari daftar aktif.</p>
+              <div id="daftarBeritaAdmin" class="admin-list"></div>
+            </aside>
           </div>
+        </section>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="tanggalBerita">Tanggal Tampil *</label>
-              <input type="text" id="tanggalBerita" placeholder="Contoh: 25 November 2026" required />
-            </div>
-            <div class="form-group">
-              <label for="slugBerita">Slug URL (otomatis jika dikosongkan)</label>
-              <input type="text" id="slugBerita" placeholder="contoh-pengumuman-libur" />
-            </div>
+        <!-- TAB 2: IDENTITAS GURU & STAF -->
+        <section id="tabGuru" class="admin-tab-panel" hidden>
+          <div class="admin-layout">
+            <form id="formGuruAdmin" class="card form-card">
+              <div class="admin-card-head">
+                <h3 id="judulFormGuru">Tambah Identitas Guru / Staf</h3>
+                <button type="button" id="btnResetGuru" class="btn-small">Reset Bawaan</button>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="namaGuru">Nama Lengkap & Gelar *</label>
+                  <input type="text" id="namaGuru" placeholder="Contoh: Dra. Ratna Sari, M.Pd." required />
+                </div>
+                <div class="form-group">
+                  <label for="jabatanGuru">Jabatan / Peran *</label>
+                  <input type="text" id="jabatanGuru" placeholder="Contoh: Guru Matematika / Staf TU" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bidangGuru">Mata Pelajaran / Unit Kerja</label>
+                  <input type="text" id="bidangGuru" placeholder="Contoh: Matematika Peminatan" />
+                </div>
+                <div class="form-group">
+                  <label for="nipGuru">NIP / NIY (opsional)</label>
+                  <input type="text" id="nipGuru" placeholder="Contoh: 198503122010012014" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fileFotoGuru">Unggah Foto Guru / Staf (JPG/PNG/WebP)</label>
+                <input type="file" id="fileFotoGuru" accept="image/*" />
+              </div>
+
+              <div class="form-group">
+                <label for="urlFotoGuru">Atau Tempel URL Foto</label>
+                <input type="url" id="urlFotoGuru" placeholder="https://..." />
+              </div>
+
+              <div class="photo-preview-box">
+                <img id="previewFotoGuru" alt="Pratinjau foto guru" hidden />
+                <span id="teksPreviewGuru" class="small-note">Belum ada foto dipilih (akan memakai avatar bawaan jika kosong).</span>
+              </div>
+
+              <div class="admin-form-actions">
+                <button type="submit" id="btnSimpanGuru" class="btn btn-primary">Simpan Data Guru</button>
+                <button type="button" id="btnBatalEditGuru" class="btn-small" hidden>Batal Edit</button>
+              </div>
+              <p id="statusGuruAdmin" class="form-status" aria-live="polite"></p>
+            </form>
+
+            <aside class="card">
+              <h3>Daftar Guru & Staf (<span id="jumlahGuru">0</span>)</h3>
+              <p class="small-note">Klik Edit untuk memperbarui identitas atau foto.</p>
+              <div id="daftarGuruAdmin" class="admin-list"></div>
+            </aside>
           </div>
+        </section>
 
-          <div class="form-group">
-            <label for="ringkasanBerita">Ringkasan Singkat *</label>
-            <textarea id="ringkasanBerita" rows="2" placeholder="Ringkasan 1–2 kalimat untuk kartu daftar berita..." required></textarea>
+        <!-- TAB 3: GALERI FOTO SEKOLAH -->
+        <section id="tabGaleri" class="admin-tab-panel" hidden>
+          <div class="admin-layout">
+            <form id="formGaleriAdmin" class="card form-card">
+              <div class="admin-card-head">
+                <h3 id="judulFormGaleri">Tambah Foto ke Galeri</h3>
+                <button type="button" id="btnResetGaleri" class="btn-small">Reset Bawaan</button>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="judulGaleri">Judul Kegiatan / Foto *</label>
+                  <input type="text" id="judulGaleri" placeholder="Contoh: Lomba Cerdas Cermat 2026" required />
+                </div>
+                <div class="form-group">
+                  <label for="kategoriGaleri">Kategori *</label>
+                  <select id="kategoriGaleri">
+                    <option value="Akademik">Akademik</option>
+                    <option value="Kesiswaan">Kesiswaan</option>
+                    <option value="Prestasi">Prestasi</option>
+                    <option value="Fasilitas">Fasilitas</option>
+                    <option value="Kegiatan Sekolah">Kegiatan Sekolah</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="tanggalGaleri">Tanggal Kegiatan</label>
+                <input type="text" id="tanggalGaleri" placeholder="Contoh: 21 November 2026" />
+              </div>
+
+              <div class="form-group">
+                <label for="deskripsiGaleri">Keterangan Singkat Foto</label>
+                <textarea id="deskripsiGaleri" rows="2" placeholder="Deskripsi singkat momen pada foto..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="fileFotoGaleri">Unggah Foto dari Perangkat *</label>
+                <input type="file" id="fileFotoGaleri" accept="image/*" />
+              </div>
+
+              <div class="form-group">
+                <label for="urlFotoGaleri">Atau Tempel URL Foto *</label>
+                <input type="url" id="urlFotoGaleri" placeholder="https://..." />
+              </div>
+
+              <div class="photo-preview-box">
+                <img id="previewFotoGaleri" alt="Pratinjau foto galeri" hidden />
+                <span id="teksPreviewGaleri" class="small-note">Pratinjau foto galeri akan muncul di sini.</span>
+              </div>
+
+              <div class="admin-form-actions">
+                <button type="submit" id="btnSimpanGaleri" class="btn btn-primary">Simpan ke Galeri</button>
+                <button type="button" id="btnBatalEditGaleri" class="btn-small" hidden>Batal Edit</button>
+              </div>
+              <p id="statusGaleriAdmin" class="form-status" aria-live="polite"></p>
+            </form>
+
+            <aside class="card">
+              <h3>Daftar Foto Galeri (<span id="jumlahGaleri">0</span>)</h3>
+              <p class="small-note">Klik Edit untuk mengganti foto, judul, atau keterangan.</p>
+              <div id="daftarGaleriAdmin" class="admin-list"></div>
+            </aside>
           </div>
-
-          <div class="form-group">
-            <label for="isiBerita">Isi Lengkap Berita (pisahkan paragraf dengan baris kosong) *</label>
-            <textarea id="isiBerita" rows="5" placeholder="Paragraf pertama...&#10;&#10;Paragraf kedua..." required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="poinBerita">Poin Penting (satu poin per baris, opsional)</label>
-            <textarea id="poinBerita" rows="3" placeholder="Siapkan berkas fotokopi rapor&#10;Hadir 15 menit sebelum acara"></textarea>
-          </div>
-
-          <div class="admin-form-actions">
-            <button type="submit" id="btnSimpanBerita" class="btn btn-primary">Simpan Berita</button>
-            <button type="button" id="btnBatalEdit" class="btn-small" hidden>Batal Edit</button>
-          </div>
-          <p id="statusAdmin" class="form-status" aria-live="polite"></p>
-        </form>
-
-        <aside class="card">
-          <h3>Daftar Berita Aktif (<span id="jumlahBerita">0</span>)</h3>
-          <p class="small-note">Klik Edit untuk mengubah isi, Hapus untuk menghapus dari daftar aktif.</p>
-          <div id="daftarBeritaAdmin" class="admin-list"></div>
-        </aside>
+        </section>
       </div>
     </div>
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; <span id="tahun"></span> SMA Harapan Bangsa. Semua hak cipta dilindungi.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-  <script src="admin.js"></script>
-</body>
-</html>
